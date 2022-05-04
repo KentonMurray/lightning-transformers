@@ -59,9 +59,11 @@ class HFDataModule(TokenizerDataModule):
             )
 
         # Load straight from data files
-        elif self.cfg.datafiles:
-            extension = self.cfg.train_file.split(".")[-1]
-            dataset = load_dataset(extension, data_files=data_files)
+        #elif self.cfg.datafiles: #TODO: BROKEN
+        elif data_files:
+            #extension = self.cfg.train_file.split(".")[-1] # Leftover logic about names #TODO: make it more general again
+            #dataset = load_dataset(extension, data_files=data_files)
+            dataset = load_dataset('text', data_files=data_files)
 
         else:
             raise MisconfigurationException(
